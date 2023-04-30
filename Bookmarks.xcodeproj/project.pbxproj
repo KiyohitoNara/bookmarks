@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B83DD44529FE595200654294 /* BookmarksKit in Frameworks */ = {isa = PBXBuildFile; productRef = B83DD44429FE595200654294 /* BookmarksKit */; };
 		B89680F229FCEDFB00C5DDA8 /* BookmarksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89680F129FCEDFB00C5DDA8 /* BookmarksApp.swift */; };
 		B89680F429FCEDFB00C5DDA8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89680F329FCEDFB00C5DDA8 /* ContentView.swift */; };
 		B89680F629FCEDFC00C5DDA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B89680F529FCEDFC00C5DDA8 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B83DD44229FE54DF00654294 /* BookmarksKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BookmarksKit; sourceTree = "<group>"; };
 		B89680EE29FCEDFB00C5DDA8 /* Bookmarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookmarks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B89680F129FCEDFB00C5DDA8 /* BookmarksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksApp.swift; sourceTree = "<group>"; };
 		B89680F329FCEDFB00C5DDA8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -30,20 +32,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B83DD44529FE595200654294 /* BookmarksKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B83DD44329FE595200654294 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B89680E529FCEDFB00C5DDA8 = {
 			isa = PBXGroup;
 			children = (
 				B896810129FCF21700C5DDA8 /* .gitignore */,
+				B83DD44229FE54DF00654294 /* BookmarksKit */,
 				B896810229FCF3D600C5DDA8 /* README.md */,
 				B896810329FCFDBF00C5DDA8 /* LICENSE.txt */,
 				B89680F029FCEDFB00C5DDA8 /* iOS ContainingApp */,
 				B89680EF29FCEDFB00C5DDA8 /* Products */,
+				B83DD44329FE595200654294 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +102,9 @@
 			dependencies = (
 			);
 			name = Bookmarks;
+			packageProductDependencies = (
+				B83DD44429FE595200654294 /* BookmarksKit */,
+			);
 			productName = Bookmarks;
 			productReference = B89680EE29FCEDFB00C5DDA8 /* Bookmarks.app */;
 			productType = "com.apple.product-type.application";
@@ -349,6 +364,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B83DD44429FE595200654294 /* BookmarksKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BookmarksKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B89680E629FCEDFB00C5DDA8 /* Project object */;
 }
