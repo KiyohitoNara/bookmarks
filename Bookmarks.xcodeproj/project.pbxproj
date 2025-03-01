@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B8E928A82D72EAC400043BF3 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = B8E928A72D72EAC400043BF3 /* ViewInspector */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B854B7052D4E0659006E0CC3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -72,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8E928A82D72EAC400043BF3 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +153,7 @@
 			);
 			name = BookmarksTests;
 			packageProductDependencies = (
+				B8E928A72D72EAC400043BF3 /* ViewInspector */,
 			);
 			productName = BookmarksTests;
 			productReference = B854B7042D4E0659006E0CC3 /* BookmarksTests.xctest */;
@@ -208,6 +214,9 @@
 			);
 			mainGroup = B854B6E72D4E0658006E0CC3;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B8E928A62D72EAC400043BF3 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B854B6F12D4E0658006E0CC3 /* Products */;
 			projectDirPath = "";
@@ -403,6 +412,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -459,6 +469,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -575,6 +586,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B8E928A62D72EAC400043BF3 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B8E928A72D72EAC400043BF3 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8E928A62D72EAC400043BF3 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B854B6E82D4E0658006E0CC3 /* Project object */;
 }

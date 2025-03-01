@@ -1,0 +1,27 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Add Item" : {
+
+    },
+    "Bookmarks" : {
+      "extractionState" : "manual"
+    },
+    "Favorites" : {
+      "extractionState" : "manual"
+    },
+    "Item at %@" : {
+
+    },
+    "Reading list" : {
+      "extractionState" : "manual"
+    },
+    "Select an item" : {
+
+    },
+    "Vault" : {
+      "extractionState" : "manual"
+    }
+  },
+  "version" : "1.0"
+}
