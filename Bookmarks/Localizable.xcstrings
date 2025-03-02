@@ -13,6 +13,12 @@
     "Item at %@" : {
 
     },
+    "No bookmarks" : {
+
+    },
+    "No bookmarks in this folder." : {
+
+    },
     "Reading list" : {
       "extractionState" : "manual"
     },
