@@ -8,7 +8,7 @@ import XCTest
 @MainActor
 final class BookmarkEditViewTests: XCTestCase {
     func testNameTextFieldWhenLaunchedDisplaysBookmarkName() throws {
-        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example", folder: .favorites)
+        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example")
         var sut = BookmarkEditView(bookmark)
         let exp = sut.on(\.didAppear) { view in
             let nameTextField = try view.find(ViewType.TextField.self, where: { try $0.labelView().text().string() == "Name" })
@@ -45,7 +45,7 @@ final class BookmarkEditViewTests: XCTestCase {
     }
 
     func testURLTextFieldWhenLaunchedDisplaysBookmarkURL() throws {
-        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example", folder: .favorites)
+        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example")
         var sut = BookmarkEditView(bookmark)
         let exp = sut.on(\.didAppear) { view in
             let urlTextField = try view.find(ViewType.TextField.self, where: { try $0.labelView().text().string() == "URL" })
@@ -82,7 +82,7 @@ final class BookmarkEditViewTests: XCTestCase {
     }
 
     func testNoteTextEditorWhenLaunchedDisplaysBookmarkNote() throws {
-        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example", note: "Example note", folder: .favorites)
+        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example", note: "Example note")
         var sut = BookmarkEditView(bookmark)
         let exp = sut.on(\.didAppear) { view in
             let noteTextEditor = try view.find(ViewType.TextEditor.self)
@@ -156,7 +156,7 @@ final class BookmarkEditViewTests: XCTestCase {
     }
 
     func testSaveButtonWithInvalidNameDisables() throws {
-        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example", folder: .favorites)
+        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example")
         var sut = BookmarkEditView(bookmark)
         let exp = sut.on(\.didAppear) { view in
             let nameTextField = try view.find(ViewType.TextField.self, where: { try $0.labelView().text().string() == "Name" })
@@ -178,7 +178,7 @@ final class BookmarkEditViewTests: XCTestCase {
     }
 
     func testSaveButtonWithInvalidURLDisables() throws {
-        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example", folder: .favorites)
+        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example")
         var sut = BookmarkEditView(bookmark)
         let exp = sut.on(\.didAppear) { view in
             let urlTextField = try view.find(ViewType.TextField.self, where: { try $0.labelView().text().string() == "URL" })
@@ -200,7 +200,7 @@ final class BookmarkEditViewTests: XCTestCase {
     }
 
     func testSaveButtonWithValidNameAndURLEnables() throws {
-        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example", folder: .favorites)
+        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example")
         var sut = BookmarkEditView(bookmark)
         let exp = sut.on(\.didAppear) { view in
             let nameTextField = try view.find(ViewType.TextField.self, where: { try $0.labelView().text().string() == "Name" })
@@ -225,7 +225,7 @@ final class BookmarkEditViewTests: XCTestCase {
     }
 
     func testSaveButtonWhenTappedUpdatesBookmarkSuccessfully() throws {
-        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example", folder: .favorites)
+        let bookmark = Bookmark(url: URL(string: "https://www.example.com")!, name: "Example")
         var sut = BookmarkEditView(bookmark)
         let exp = sut.on(\.didAppear) { view in
             let nameTextField = try view.find(ViewType.TextField.self, where: { try $0.labelView().text().string() == "Name" })

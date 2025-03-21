@@ -65,7 +65,7 @@ struct BookmarkEditView: View {
             
             bookmark.name = name
             bookmark.url = URL(string: url)!
-            bookmark.note = note.isEmpty ? nil : note
+            bookmark.note = note
             bookmark.folder = folder
         } else {
             logger.debug("Creating bookmark: \(name)")

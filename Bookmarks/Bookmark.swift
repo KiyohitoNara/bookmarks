@@ -5,11 +5,11 @@ import SwiftData
 final class Bookmark {
     var url: URL = URL(string: "https://www.apple.com")!
     var name: String = "Apple"
-    var note: String?
+    var note: String = "Apple Inc."
     var folder: Folder = Folder.favorites
     var timestamp: Date = Date()
 
-    init(url: URL, name: String, note: String? = nil, folder: Folder, timestamp: Date = Date()) {
+    init(url: URL, name: String, note: String = "", folder: Folder = .favorites, timestamp: Date = Date()) {
         self.url = url
         self.name = name
         self.note = note
