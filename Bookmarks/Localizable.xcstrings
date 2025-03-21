@@ -7,10 +7,22 @@
     "Bookmarks" : {
       "extractionState" : "manual"
     },
+    "Edit Bookmark" : {
+
+    },
     "Favorites" : {
       "extractionState" : "manual"
     },
+    "Folder" : {
+
+    },
     "Item at %@" : {
+
+    },
+    "Location" : {
+
+    },
+    "Name" : {
 
     },
     "No bookmarks" : {
@@ -19,10 +31,19 @@
     "No bookmarks in this folder." : {
 
     },
+    "Note" : {
+
+    },
     "Reading list" : {
       "extractionState" : "manual"
     },
+    "Save" : {
+
+    },
     "Select an item" : {
+
+    },
+    "URL" : {
 
     },
     "Vault" : {
