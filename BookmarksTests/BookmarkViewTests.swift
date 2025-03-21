@@ -15,8 +15,7 @@ final class BookmarkViewTests: XCTestCase {
         }
 
         let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try! ModelContainer(
-            for: Bookmark.self, configurations: configuration)
+        let container = try! ModelContainer(for: Bookmark.self, configurations: configuration)
         container.mainContext.insert(Bookmark(url: URL(string: "https://www.apple.com")!, name: "Apple", folder: .favorites))
         container.mainContext.insert(Bookmark(url: URL(string: "https://www.google.com")!, name: "Google", folder: .favorites))
         container.mainContext.insert(Bookmark(url: URL(string: "https://www.amazon.com")!, name: "Amazon", folder: .favorites))
