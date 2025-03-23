@@ -37,7 +37,7 @@ struct BookmarkView: View {
                 }
             }
         }
-        .navigationTitle(folder == .favorites ? "Favorites" : folder == .readingList ? "Reading list" : "Vault")
+        .navigationTitle(navigationTitle)
         .onAppear {
             self.didAppear?(self)
         }
