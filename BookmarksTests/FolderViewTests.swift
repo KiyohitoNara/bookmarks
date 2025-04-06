@@ -7,10 +7,10 @@ import XCTest
 final class FolderViewTests: XCTestCase {
     func testFolderView() throws {
         let sut = FolderView()
-        let list = try sut.inspect().implicitAnyView().list()
 
-        for (index, folder) in Folder.allCases.enumerated() {
-            let label = try list.forEach(0)[index].view(FolderLabel.self).actualView()
+        for (_, folder) in Folder.allCases.enumerated() {
+            let label = try sut.inspect().find(viewWithAccessibilityIdentifier: "folder_label_\(folder.rawValue)").view(FolderLabel.self).actualView()
+            
             XCTAssertEqual(label.folder, folder)
         }
     }

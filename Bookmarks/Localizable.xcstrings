@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Add Item" : {
-
-    },
     "Bookmarks" : {
       "extractionState" : "manual"
     },
@@ -14,9 +11,6 @@
       "extractionState" : "manual"
     },
     "Folder" : {
-
-    },
-    "Item at %@" : {
 
     },
     "Location" : {
@@ -38,9 +32,6 @@
       "extractionState" : "manual"
     },
     "Save" : {
-
-    },
-    "Select an item" : {
 
     },
     "URL" : {
