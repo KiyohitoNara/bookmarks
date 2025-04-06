@@ -33,4 +33,11 @@ final class ContentViewTests: XCTestCase {
 
         XCTAssertTrue(app.navigationBars["Vault"].exists)
     }
+    
+    func testNavigationToEditerWhenAddButtonTapped() throws {
+        app.otherElements.buttons["navigation_link_0"].tap()
+        app.otherElements.buttons["navigation_link_add_bookmark"].tap()
+        
+        XCTAssertTrue(app.navigationBars["Edit Bookmark"].exists)
+    }
 }

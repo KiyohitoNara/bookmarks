@@ -38,6 +38,15 @@ struct BookmarkView: View {
             }
         }
         .navigationTitle(navigationTitle)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                NavigationLink(destination: BookmarkEditView()) {
+                    Label("Add bookmark", systemImage: "plus")
+                        .accessibilityIdentifier("button_add_bookmark")
+                }
+                .accessibilityIdentifier("navigation_link_add_bookmark")
+            }
+        }
         .onAppear {
             self.didAppear?(self)
         }
