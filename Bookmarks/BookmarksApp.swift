@@ -11,13 +11,17 @@ import SwiftData
 @main
 struct BookmarksApp: App {
     var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let configuration = ModelConfiguration(isStoredInMemoryOnly: ProcessInfo.processInfo.arguments.contains("isStoredInMemoryOnly"))
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            let container = try ModelContainer(for: Bookmark.self, configurations: configuration)
+            if ProcessInfo.processInfo.arguments.contains("hasTestBookmarks") {
+                container.mainContext.insert(Bookmark(url: URL(string: "https://www.apple.com")!, name: "Apple", folder: .favorites))
+                container.mainContext.insert(Bookmark(url: URL(string: "https://www.google.com")!, name: "Google", folder: .favorites))
+                container.mainContext.insert(Bookmark(url: URL(string: "https://www.amazon.com")!, name: "Amazon", folder: .favorites))
+            }
+            
+            return container
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }

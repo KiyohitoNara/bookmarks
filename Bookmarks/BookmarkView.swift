@@ -26,6 +26,16 @@ struct BookmarkView: View {
     var body: some View {
         List(filteredBookmarks) { filteredBookmark in
             BookmarkLabel(filteredBookmark)
+                .contextMenu {
+                    NavigationLink(destination: BookmarkEditView(filteredBookmark)) {
+                        Label("Edit", systemImage: "pencil")
+                    }
+                    Button(role: .destructive) {
+                        context.delete(filteredBookmark)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
         }
         .listStyle(.insetGrouped)
         .overlay {
