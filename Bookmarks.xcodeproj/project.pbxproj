@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B85E18512DABA90900EEBFC0 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = B85E18502DABA90900EEBFC0 /* BetterSafariView */; };
 		B8E928A82D72EAC400043BF3 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = B8E928A72D72EAC400043BF3 /* ViewInspector */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B85E18512DABA90900EEBFC0 /* BetterSafariView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +132,7 @@
 			);
 			name = Bookmarks;
 			packageProductDependencies = (
+				B85E18502DABA90900EEBFC0 /* BetterSafariView */,
 			);
 			productName = Bookmarks;
 			productReference = B854B6F02D4E0658006E0CC3 /* Bookmarks.app */;
@@ -216,6 +219,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				B8E928A62D72EAC400043BF3 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+				B85E184F2DABA90900EEBFC0 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B854B6F12D4E0658006E0CC3 /* Products */;
@@ -588,6 +592,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B85E184F2DABA90900EEBFC0 /* XCRemoteSwiftPackageReference "BetterSafariView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stleamist/BetterSafariView.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		B8E928A62D72EAC400043BF3 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nalexn/ViewInspector";
@@ -599,6 +611,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B85E18502DABA90900EEBFC0 /* BetterSafariView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B85E184F2DABA90900EEBFC0 /* XCRemoteSwiftPackageReference "BetterSafariView" */;
+			productName = BetterSafariView;
+		};
 		B8E928A72D72EAC400043BF3 /* ViewInspector */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B8E928A62D72EAC400043BF3 /* XCRemoteSwiftPackageReference "ViewInspector" */;

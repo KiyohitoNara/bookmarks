@@ -21,6 +21,13 @@ final class BookmarkViewTests: XCTestCase {
         try super.tearDownWithError()
     }
     
+    func testNavigationToSafariWhenBookmarkTapped() throws {
+        let label = app.staticTexts["Apple"]
+        label.tap()
+        
+        XCTAssertTrue(app.buttons["Done"].waitForExistence(timeout: 5))
+    }
+    
     func testNavigationToEditorWhenEditButtonTapped() throws {
         let label = app.staticTexts["Apple"]
         label.press(forDuration: 1.0)

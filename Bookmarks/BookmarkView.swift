@@ -1,3 +1,4 @@
+import BetterSafariView
 import SwiftData
 import SwiftUI
 
@@ -9,7 +10,9 @@ struct BookmarkView: View {
     private var filteredBookmarks: [Bookmark] {
         return bookmarks.filter { $0.folder == folder }
     }
-    
+
+    @State private var selectedBookmark: Bookmark? = nil
+
     private var navigationTitle: String {
         switch folder {
         case .favorites:
@@ -20,22 +23,24 @@ struct BookmarkView: View {
             return "Vault"
         }
     }
-    
+
     internal var didAppear: ((Self) -> Void)?
 
     var body: some View {
         List(filteredBookmarks) { filteredBookmark in
-            BookmarkLabel(filteredBookmark)
-                .contextMenu {
-                    NavigationLink(destination: BookmarkEditView(filteredBookmark)) {
-                        Label("Edit", systemImage: "pencil")
-                    }
-                    Button(role: .destructive) {
-                        context.delete(filteredBookmark)
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                    }
+            Button(filteredBookmark.name, systemImage: "globe") {
+                selectedBookmark = filteredBookmark
+            }
+            .labelStyle(.titleAndIcon)
+            .accentColor(.black)
+            .contextMenu {
+                NavigationLink(destination: BookmarkEditView(filteredBookmark)) {
+                    Label("Edit", systemImage: "pencil")
                 }
+                Button("Delete", systemImage: "trash", role: .destructive) {
+                    context.delete(filteredBookmark)
+                }
+            }
         }
         .listStyle(.insetGrouped)
         .overlay {
@@ -46,6 +51,9 @@ struct BookmarkView: View {
                     Text("No bookmarks in this folder.")
                 }
             }
+        }
+        .safariView(item: $selectedBookmark) { bookmark in
+            SafariView(url: bookmark.url)
         }
         .navigationTitle(navigationTitle)
         .toolbar {
