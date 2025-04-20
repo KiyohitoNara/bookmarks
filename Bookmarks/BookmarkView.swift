@@ -1,6 +1,7 @@
 import BetterSafariView
 import SwiftData
 import SwiftUI
+import LocalAuthentication
 
 struct BookmarkView: View {
     let folder: Folder
@@ -11,6 +12,7 @@ struct BookmarkView: View {
         return bookmarks.filter { $0.folder == folder }
     }
 
+    @State private var isLocked: Bool = false
     @State private var selectedBookmark: Bookmark? = nil
 
     private var navigationTitle: String {
@@ -44,7 +46,18 @@ struct BookmarkView: View {
         }
         .listStyle(.insetGrouped)
         .overlay {
-            if filteredBookmarks.isEmpty {
+            if isLocked {
+                ContentUnavailableView {
+                    Label("Locked", systemImage: "lock")
+                } description: {
+                    Text("Unlock to view bookmarks.")
+                } actions: {
+                    Button("Unlock") {
+                        authenticate()
+                    }
+                    .accessibilityIdentifier("button_unlock")
+                }
+            } else if filteredBookmarks.isEmpty {
                 ContentUnavailableView {
                     Label("No bookmarks", systemImage: "bookmark.slash")
                 } description: {
@@ -72,6 +85,22 @@ struct BookmarkView: View {
 
     init(folder: Folder) {
         self.folder = folder
+        self._isLocked = State(initialValue: folder == .vault)
+    }
+    
+    private func authenticate() {
+        let context = LAContext()
+        var error: NSError?
+        
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Unlock the vault") { success, authenticationError in
+                DispatchQueue.main.async {
+                    if success {
+                        isLocked = false
+                    }
+                }
+            }
+        }
     }
 }
 

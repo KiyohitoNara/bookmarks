@@ -25,6 +25,9 @@
     "Location" : {
 
     },
+    "Locked" : {
+
+    },
     "Name" : {
 
     },
@@ -41,6 +44,12 @@
       "extractionState" : "manual"
     },
     "Save" : {
+
+    },
+    "Unlock" : {
+
+    },
+    "Unlock to view bookmarks." : {
 
     },
     "URL" : {

@@ -27,6 +27,24 @@ final class BookmarkViewTests: XCTestCase {
         wait(for: [exp], timeout: 0.1)
     }
     
+    func testBookmarkViewDisplayUnlockButton() throws {
+        var sut = BookmarkView(folder: .vault)
+        let exp = sut.on(\.didAppear) { view in
+            let button = try view.find(viewWithAccessibilityIdentifier: "button_unlock").button()
+            
+            XCTAssertNotNil(button)
+        }
+        
+        let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try! ModelContainer(for: Bookmark.self, configurations: configuration)
+        
+        ViewHosting.host(
+            view: sut.environment(\.modelContext, container.mainContext)
+        )
+        defer { ViewHosting.expel() }
+        wait(for: [exp], timeout: 0.1)
+    }
+    
     func testBookmarkViewDisplayAddButton() throws {
         var sut = BookmarkView(folder: .favorites)
         let exp = sut.on(\.didAppear) { view in
