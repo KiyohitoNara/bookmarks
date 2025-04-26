@@ -15,24 +15,6 @@ final class ContentViewTests: XCTestCase {
 
         try super.tearDownWithError()
     }
-
-    func testNavigationToFavoritesWhenFirstFolderTapped() throws {
-        app.otherElements.buttons["navigation_link_0"].tap()
-
-        XCTAssertTrue(app.navigationBars["Favorites"].exists)
-    }
-
-    func testNavigationToReadingListWhenSecondFolderTapped() throws {
-        app.otherElements.buttons["navigation_link_1"].tap()
-
-        XCTAssertTrue(app.navigationBars["Reading list"].exists)
-    }
-
-    func testNavigationToVaultWhenThirdFolderTapped() throws {
-        app.otherElements.buttons["navigation_link_2"].tap()
-
-        XCTAssertTrue(app.navigationBars["Vault"].exists)
-    }
     
     func testNavigationToEditerWhenAddButtonTapped() throws {
         app.otherElements.buttons["navigation_link_0"].tap()

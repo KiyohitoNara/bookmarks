@@ -5,13 +5,12 @@ import XCTest
 @testable import Bookmarks
 
 final class FolderViewTests: XCTestCase {
-    func testFolderView() throws {
+    func testFolderViewWhenLoadingShouldDisplayAllFolders() throws {
         let sut = FolderView()
 
-        for (_, folder) in Folder.allCases.enumerated() {
-            let label = try sut.inspect().find(viewWithAccessibilityIdentifier: "folder_label_\(folder.rawValue)").view(FolderLabel.self).actualView()
-            
-            XCTAssertEqual(label.folder, folder)
+        let folderLabel = try sut.inspect().findAll(FolderLabel.self)
+        for (index, folder) in Folder.allCases.enumerated() {
+            XCTAssertEqual(try folderLabel[index].actualView().folder, folder)
         }
     }
 }
