@@ -1,81 +1,68 @@
 import BetterSafariView
+import LocalAuthentication
+import OSLog
 import SwiftData
 import SwiftUI
-import LocalAuthentication
+import SwiftUIX
 
 struct BookmarkView: View {
-    let folder: Folder
+    private let folder: Folder
 
     @Environment(\.modelContext) private var context
     @Query(sort: \Bookmark.timestamp) private var bookmarks: [Bookmark]
-    private var filteredBookmarks: [Bookmark] {
-        return bookmarks.filter { $0.folder == folder }
-    }
 
-    @State private var isLocked: Bool = false
+    @State private var isLocked: Bool = true
     @State private var selectedBookmark: Bookmark? = nil
-
-    private var navigationTitle: String {
-        switch folder {
-        case .favorites:
-            return "Favorites"
-        case .readingList:
-            return "Reading list"
-        default:
-            return "Vault"
-        }
-    }
 
     internal var didAppear: ((Self) -> Void)?
 
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "BookmarkView")
+
     var body: some View {
-        List(filteredBookmarks) { filteredBookmark in
-            Button(filteredBookmark.name, systemImage: "globe") {
-                selectedBookmark = filteredBookmark
+        List(bookmarks.filter { $0.folder == folder }) { bookmark in
+            Button(bookmark.name, systemImage: "globe") {
+                selectedBookmark = bookmark
             }
             .labelStyle(.titleAndIcon)
             .accentColor(.black)
             .contextMenu {
-                NavigationLink(destination: BookmarkEditView(filteredBookmark)) {
+                NavigationLink(destination: BookmarkEditView(bookmark)) {
                     Label("Edit", systemImage: "pencil")
                 }
                 Button("Delete", systemImage: "trash", role: .destructive) {
-                    context.delete(filteredBookmark)
+                    context.delete(bookmark)
                 }
             }
         }
         .listStyle(.insetGrouped)
         .overlay {
-            if isLocked {
-                ContentUnavailableView {
-                    Label("Locked", systemImage: "lock")
-                } description: {
-                    Text("Unlock to view bookmarks.")
-                } actions: {
-                    Button("Unlock") {
-                        authenticate()
-                    }
-                    .accessibilityIdentifier("button_unlock")
-                }
-            } else if filteredBookmarks.isEmpty {
-                ContentUnavailableView {
-                    Label("No bookmarks", systemImage: "bookmark.slash")
-                } description: {
-                    Text("No bookmarks in this folder.")
-                }
+            ContentUnavailableView {
+                Label("Locked", systemImage: "lock")
             }
+            .hidden(!isLocked)
+            ContentUnavailableView {
+                Label("No bookmarks", systemImage: "bookmark.slash")
+            }
+            .hidden(bookmarks.filter({ $0.folder == folder }).count > 0 || isLocked)
         }
         .safariView(item: $selectedBookmark) { bookmark in
             SafariView(url: bookmark.url)
         }
-        .navigationTitle(navigationTitle)
+        .navigationTitle(folder.name)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button("Unlock", systemImage: "lock.open") {
+                    Task {
+                        await performAuthentication()
+                    }
+                }
+                .hidden(!isLocked)
+            }
             ToolbarItem(placement: .primaryAction) {
                 NavigationLink(destination: BookmarkEditView()) {
                     Label("Add bookmark", systemImage: "plus")
-                        .accessibilityIdentifier("button_add_bookmark")
                 }
-                .accessibilityIdentifier("navigation_link_add_bookmark")
             }
         }
         .onAppear {
@@ -87,21 +74,49 @@ struct BookmarkView: View {
         self.folder = folder
         self._isLocked = State(initialValue: folder == .vault)
     }
-    
-    private func authenticate() {
+
+    private func performAuthentication() async {
         let context = LAContext()
         var error: NSError?
-        
-        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
-            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Unlock the vault") { success, authenticationError in
-                DispatchQueue.main.async {
-                    if success {
-                        isLocked = false
-                    }
-                }
+
+        guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
+            logger.error("Authentication not available: \(error?.localizedDescription ?? "Unknown error")")
+
+            return
+        }
+
+        do {
+            let success = try await context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Unlock the vault")
+            if success {
+                logger.info("Authentication successful")
+
+                isLocked = false
             }
+        } catch {
+            logger.error("Authentication failed: \(error.localizedDescription)")
         }
     }
+}
+
+#Preview("Favorites") {
+    NavigationStack {
+        BookmarkView(folder: .favorites)
+    }
+    .modelContainer(for: Bookmark.self, inMemory: true)
+}
+
+#Preview("Reading list") {
+    NavigationStack {
+        BookmarkView(folder: .readingList)
+    }
+    .modelContainer(for: Bookmark.self, inMemory: true)
+}
+
+#Preview("Vault") {
+    NavigationStack {
+        BookmarkView(folder: .vault)
+    }
+    .modelContainer(for: Bookmark.self, inMemory: true)
 }
 
 #if DEBUG
@@ -124,10 +139,3 @@ struct BookmarkView: View {
         }
     }
 #endif
-
-#Preview {
-    NavigationStack {
-        BookmarkView(folder: .favorites)
-    }
-    .modelContainer(for: Bookmark.self, inMemory: true)
-}

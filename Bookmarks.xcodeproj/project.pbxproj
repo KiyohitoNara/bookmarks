@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8105F9A2DC5A6DF007956E8 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = B8105F992DC5A6DF007956E8 /* SwiftUIX */; };
 		B85E18512DABA90900EEBFC0 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = B85E18502DABA90900EEBFC0 /* BetterSafariView */; };
 		B8E928A82D72EAC400043BF3 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = B8E928A72D72EAC400043BF3 /* ViewInspector */; };
 /* End PBXBuildFile section */
@@ -71,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85E18512DABA90900EEBFC0 /* BetterSafariView in Frameworks */,
+				B8105F9A2DC5A6DF007956E8 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +135,7 @@
 			name = Bookmarks;
 			packageProductDependencies = (
 				B85E18502DABA90900EEBFC0 /* BetterSafariView */,
+				B8105F992DC5A6DF007956E8 /* SwiftUIX */,
 			);
 			productName = Bookmarks;
 			productReference = B854B6F02D4E0658006E0CC3 /* Bookmarks.app */;
@@ -220,6 +223,7 @@
 			packageReferences = (
 				B8E928A62D72EAC400043BF3 /* XCRemoteSwiftPackageReference "ViewInspector" */,
 				B85E184F2DABA90900EEBFC0 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
+				B8105F982DC5A6DF007956E8 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B854B6F12D4E0658006E0CC3 /* Products */;
@@ -592,6 +596,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B8105F982DC5A6DF007956E8 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.3;
+			};
+		};
 		B85E184F2DABA90900EEBFC0 /* XCRemoteSwiftPackageReference "BetterSafariView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stleamist/BetterSafariView.git";
@@ -611,6 +623,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B8105F992DC5A6DF007956E8 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8105F982DC5A6DF007956E8 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
 		B85E18502DABA90900EEBFC0 /* BetterSafariView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B85E184F2DABA90900EEBFC0 /* XCRemoteSwiftPackageReference "BetterSafariView" */;
