@@ -27,6 +27,12 @@ final class BookmarkViewTests: XCTestCase {
 
         XCTAssertTrue(app.buttons["Done"].waitForExistence(timeout: 5))
     }
+    
+    func testBookmarkViewLaunchBookmarkEditViewWhenAddButtonTapped() throws {
+        let addButton = app.buttons["Add bookmark"]
+        addButton.tap()
+        XCTAssertTrue(app.navigationBars["Edit Bookmark"].exists)
+    }
 
     func testBookmarkViewLaunchBookmarkEditViewWhenEditButtonTapped() throws {
         let label = app.staticTexts["Apple"]
