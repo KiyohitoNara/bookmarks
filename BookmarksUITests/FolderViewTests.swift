@@ -16,19 +16,19 @@ final class FolderViewTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    func testFolderViewWhenFavaritesTappedShouldDisplayBookmarkView() throws {
+    func testFolderViewShowsBookmarkViewWhenFavoritesTapped() throws {
         app.buttons["Favorites"].tap()
 
         XCTAssertTrue(app.navigationBars["Favorites"].exists)
     }
 
-    func testFolderViewWhenReadingListTappedShouldDisplayBookmarkView() throws {
+    func testFolderViewShowsBookmarkViewWhenReadingListTapped() throws {
         app.buttons["Reading list"].tap()
 
         XCTAssertTrue(app.navigationBars["Reading list"].exists)
     }
 
-    func testFolderViewWhenVaultTappedShouldDisplayBookmarkView() throws {
+    func testFolderViewShowsBookmarkViewWhenVaultTapped() throws {
         app.buttons["Vault"].tap()
 
         XCTAssertTrue(app.navigationBars["Vault"].exists)
