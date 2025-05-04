@@ -3,9 +3,10 @@ import SwiftData
 import SwiftUI
 
 struct BookmarkEditView: View {
-    let bookmark: Bookmark?
+    private let bookmark: Bookmark?
     
     @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) private var dismiss
     
     @State private var name: String
     @State private var url: String
@@ -42,6 +43,7 @@ struct BookmarkEditView: View {
             ToolbarItem(placement: .primaryAction) {
                 Button("Save") {
                     upsertBookmark()
+                    dismiss()
                 }
                 .disabled(name.isEmpty || url.isEmpty)
             }
@@ -53,6 +55,7 @@ struct BookmarkEditView: View {
 
     init(_ bookmark: Bookmark? = nil) {
         self.bookmark = bookmark
+        
         self._name = State(initialValue: bookmark?.name ?? "")
         self._url = State(initialValue: bookmark?.url.absoluteString ?? "")
         self._note = State(initialValue: bookmark?.note ?? "")
